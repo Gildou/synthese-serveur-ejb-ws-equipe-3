@@ -63,7 +63,7 @@ public class Magasin implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "Magasin [idMagasin=" + idMagasin + ", nomMagasin=" + nomMagasin + ", code=" + code + ", prixDuLocal="
+		return "Magasin [idMagasin=" + idMagasin + ", nomMagasin=" + nomMagasin + ", codeMagasin=" + codeMagasin + ", prixDuLocal="
 				+ prixDuLocal +"]";
 	}
 	
