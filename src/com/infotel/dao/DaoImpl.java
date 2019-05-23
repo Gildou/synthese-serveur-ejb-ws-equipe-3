@@ -78,7 +78,7 @@ public class DaoImpl implements IdaoLocal, IdaoRemote {
 		}
 		return idProduit;
 	}
-
+ 
 	// +++++++++++++++++++MODIFIER++++++++++++++++++++
 
 	@Override
