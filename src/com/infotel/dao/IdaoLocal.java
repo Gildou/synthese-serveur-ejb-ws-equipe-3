@@ -15,8 +15,9 @@ import com.infotel.metier.ProduitPerissable;
 public interface IdaoLocal {
 
 	public void addMagasin(Magasin m);
-	public void ajouterProduitNonPerissable(ProduitNonPerissable pnp, long idMagasin);
-	public void ajouterProduitPerissable(ProduitPerissable pp, long idMagasin);
+	public void ajouterProduitNonPerissable(ProduitNonPerissable pnp);
+	public void ajouterProduitPerissable(ProduitPerissable pp);
+	public void ajouterProduit(Produit p, long idMagasin);
 	
 	public void supprimerMagasin(Magasin m);
 	public long supprimerProduitNonPerissable(long idProduit);
