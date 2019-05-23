@@ -25,7 +25,7 @@ public class ApplicationMagasin extends Application{
 	    private void addRestRessources (Set<Class<?>> resources){
 	        
 	        //ajout de la resources 
-	        resources.add(com.infotel.wsrest.PersonneRestService.class);
+	        resources.add(com.infotel.wsrest.MagasinRestService.class);
 	        
 	    }
 }

@@ -24,7 +24,7 @@ public class Magasin implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idMagasin;
 	private String nomMagasin;
-	private int code;
+	private int codeMagasin;
 	private double prixDuLocal;
 	@OneToMany(mappedBy = "magasin")
 	private List<Produit> produits = new ArrayList<Produit>();
@@ -41,11 +41,12 @@ public class Magasin implements Serializable{
 	public void setNomMagasin(String nomMagasin) {
 		this.nomMagasin = nomMagasin;
 	}
-	public int getCode() {
-		return code;
+	
+	public int getCodeMagasin() {
+		return codeMagasin;
 	}
-	public void setCode(int code) {
-		this.code = code;
+	public void setCodeMagasin(int codeMagasin) {
+		this.codeMagasin = codeMagasin;
 	}
 	public double getPrixDuLocal() {
 		return prixDuLocal;
