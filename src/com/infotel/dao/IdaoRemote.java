@@ -4,26 +4,36 @@ import java.util.List;
 
 import javax.ejb.Remote;
 
-import com.infotel.metier.Personne;
-import com.infotel.metier.Voiture;
+import com.infotel.metier.Magasin;
+import com.infotel.metier.Produit;
+import com.infotel.metier.ProduitNonPerissable;
+import com.infotel.metier.ProduitPerissable;
+
 
 @Remote
 public interface IdaoRemote {
 
-	public void addPersonne(Personne p);
-	public void addVoiture(Voiture v, long idPersonne);
+	public void addMagasin(Magasin m);
+	public void ajouterProduitNonPerissable(ProduitNonPerissable pnp, long idMagasin);
+	public void ajouterProduitPerissable(ProduitPerissable pp, long idMagasin);
 	
-	public long supprimerPersonne(long idPersonne);
-	public long supprimerVoiture(long idVoiture);
+	public void supprimerMagasin(Magasin m);
+	public long supprimerProduitNonPerissable(long idProduit);
+	public long supprimerProduitPerissable(long idProduit);
 	
-	public void modifierPersonne(Personne p);
-	public void modifierVoiture(Voiture v);
+	public void modifierMagasin(Magasin m);
+	public void modifierProduitNonPerissable(ProduitNonPerissable pnp);
+	public void modifierProduitPerissable(ProduitPerissable pp);
 	
-	public Personne getPersonne(long idPersonne);
-	public Voiture getVoiture(long idVoiture);
+	public Magasin getMagasin(long idMagasin);
+	public Produit getProduitNonPerissable(long idProduit);
+	public Produit getProduitPerissable(long idProduit);
 	
-	public List<Personne> getAllPersonne();
-	public List<Voiture> getAllVoiture();
+	public List<Magasin> getAllMagasin();
+	public List<Produit> getAllProduit();
+	public List<ProduitNonPerissable> getAllProduitNonPerissable();
+	public List<ProduitPerissable> getAllProduitPerissable();
 	
-	public List<Voiture> getVoitureParPersonne(long idPersonne);
+	public List<Produit> getProduitParMagasin(long idMagasin);
+	public double calculPrixMagasin(Magasin m);
 }
