@@ -28,7 +28,7 @@ public abstract class Produit {
 	protected int stock;
 	protected double prix;
 	@ManyToOne
-	private Magasin magasin;
+	protected Magasin magasin;
 	
 	public long getIdProduit() {
 		return idProduit;

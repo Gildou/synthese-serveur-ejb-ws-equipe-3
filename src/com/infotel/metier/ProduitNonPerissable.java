@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("ProdNonPeri")
-public class ProduitNonPerissable {
+public class ProduitNonPerissable extends Produit{
 
 	private String modeDemploi;
 
