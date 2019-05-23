@@ -12,10 +12,9 @@ import javax.ws.rs.core.MediaType;
 
 import com.infotel.dao.DaoImpl;
 import com.infotel.metier.Magasin;
-import com.infotel.metier.Personne;
+import com.infotel.metier.Produit;
 import com.infotel.metier.ProduitNonPerissable;
 import com.infotel.metier.ProduitPerissable;
-import com.infotel.metier.Voiture;
 
 @Stateless
 @Path(value = "/magasins")
@@ -52,10 +51,13 @@ public class MagasinRestService {
 	@GET
 	@Path("supprMagasin/{idMagasin}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public long supprimerMagasin(
+	public void supprimerMagasin(
 			@PathParam(value="idMagasin") long idMagasin) {
 		
-		return dao.supprimerMagasin(idMagasin);
+		Magasin m = new Magasin();
+		//m.setIdMagasin(idMagasin);
+		m = dao.getMagasin(idMagasin);
+		dao.supprimerMagasin(m);
 	}
 	
 	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Lecture +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -94,19 +96,33 @@ public class MagasinRestService {
 	}
 	
 	@GET
-	@Path("allVoitures")
+	@Path("allProduits")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Voiture> getAllVoitures(){
+	public List<Produit> getAllProduits(){
 		
-		return dao.getAllVoiture();
+		return dao.getAllProduit();
+	}
+	@GET
+	@Path("allProduitsNonPerissables")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<ProduitNonPerissable> getAllProduitsNonPerissables(){
+		
+		return dao.getAllProduitNonPerissable();
+	}
+	@GET
+	@Path("allProduitsPerissables")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<ProduitPerissable> getAllProduitsPerissables(){
+		
+		return dao.getAllProduitPerissable();
 	}
 	
 	@GET
-	@Path("VoituresParPersonne/{idPersonne}")
+	@Path("ProduitsParMagasin/{idMagasin}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Voiture> getVoitureParPersonne(
-			@PathParam(value="idPersonne")long idPersonne){
+	public List<Produit> getProduitsParMagasin(
+			@PathParam(value="idMagasin")long idMagasin){
 		
-		return dao.getVoitureParPersonne(idPersonne);
+		return dao.getProduitParMagasin(idMagasin);
 	}
 }
