@@ -76,7 +76,7 @@ public class DaoImpl implements IdaoLocal, IdaoRemote {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return idProduit;
+		return idProduit; 
 	}
  
 	// +++++++++++++++++++MODIFIER++++++++++++++++++++
