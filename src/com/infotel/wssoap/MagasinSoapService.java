@@ -1,6 +1,7 @@
 package com.infotel.wssoap;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -10,6 +11,7 @@ import javax.jws.WebService;
 
 import com.infotel.dao.DaoImpl;
 import com.infotel.metier.Magasin;
+import com.infotel.metier.Produit;
 import com.infotel.metier.ProduitNonPerissable;
 import com.infotel.metier.ProduitPerissable;
 
@@ -26,6 +28,8 @@ public class MagasinSoapService {
 	public void setDao(DaoImpl dao) {
 		this.dao = dao;
 	}
+	
+	//+++++++++++++++++++++++++++++++++AJOUTER++++++++++++++++++++++++++++++++++
 	
 	@WebMethod
 	public void ajouterMagasin(
@@ -75,6 +79,8 @@ public class MagasinSoapService {
 	
 	dao.ajouterProduitPerissable(p);
 	}
+	
+	//+++++++++++++++++++++++++++++++MODIFIER++++++++++++++++++++++++++++++++++++++++++++++
 
 	@WebMethod
 	public void modifierMagasin(
@@ -125,6 +131,8 @@ public class MagasinSoapService {
 	dao.modifierProduitPerissable(p);
 	}
 	
+	//+++++++++++++++++++++++++++++++CALCUL PRIX MAGASIN++++++++++++++++++++++++++++++++++++++++
+	
 	@WebMethod
 	public double calculPrixMagasin(
 			@WebParam(name="idMagasin")long idMagasin) {
@@ -136,6 +144,8 @@ public class MagasinSoapService {
 		
 	}
 	
+	//++++++++++++++++++++++++++++AJOUT PRODUIT MAGASIN+++++++++++++++++++++++++++++++++++++++
+	@WebMethod
 	public void ajouterPPMagasin(
 			@WebParam(name="idProduit")long idProduit,
 			@WebParam(name="nomProduit")String nomProduit,
@@ -154,6 +164,7 @@ public class MagasinSoapService {
 		
 	}
 	
+	@WebMethod
 	public void ajouterPNPMagasin(
 			@WebParam(name="idProduit")long idProduit,
 			@WebParam(name="nomProduit")String nomProduit,
@@ -170,6 +181,82 @@ public class MagasinSoapService {
 		
 		dao.ajouterProduit(p, idMagasin);
 			}
+	//++++++++++++++++++++++++++++SUPPRIMER+++++++++++++++++++++++++++++++++++++++++
+	@WebMethod
+	public long supprimerProduitPerissable(
+			@WebParam(name="idProduit") long idProduit) {
+		
+		return dao.supprimerProduitPerissable(idProduit);
+	}
+	
+	@WebMethod
+	public long supprimerProduitNonPerissable(
+			@WebParam(name="idProduit") long idProduit) {
+		
+		return dao.supprimerProduitNonPerissable(idProduit);
+	}
+	
+	@WebMethod
+	public void supprimerMagasin(
+			@WebParam(name="idMagasin") long idMagasin) {
+		
+		Magasin m = new Magasin();
+		//m.setIdMagasin(idMagasin);
+		m = dao.getMagasin(idMagasin);
+		dao.supprimerMagasin(m);
+	}
+	
+	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Lecture +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	@WebMethod
+	public ProduitPerissable getProduitPerissable(
+			@WebParam(name="idProduit")long idProduit) {
+		
+		return dao.getProduitPerissable(idProduit);
+	}
+	@WebMethod
+	public ProduitNonPerissable getProduitNonPerissable(
+			@WebParam(name="idProduit")long idProduit) {
+		
+		return dao.getProduitNonPerissable(idProduit);
+	}
+	
+	@WebMethod
+	public Magasin getMagasin(
+			@WebParam(name="idMagasin")long idMagasin) {
+		
+		return dao.getMagasin(idMagasin);
+	}
+	
+	@WebMethod
+	public List<Magasin> getAllMagasin(){
+		
+		return dao.getAllMagasin();
+	}
+	
+	@WebMethod
+	public List<Produit> getAllProduits(){
+		
+		return dao.getAllProduit();
+	}
+	@WebMethod
+	public List<ProduitNonPerissable> getAllProduitsNonPerissables(){
+		
+		return dao.getAllProduitNonPerissable();
+	}
+	@WebMethod
+	public List<ProduitPerissable> getAllProduitsPerissables(){
+		
+		return dao.getAllProduitPerissable();
+	}
+	
+	@WebMethod
+	public List<Produit> getProduitsParMagasin(
+			@WebParam(name="idMagasin")long idMagasin){
+		
+		return dao.getProduitParMagasin(idMagasin);
+	}
+	
+	
 	}
 
 	
