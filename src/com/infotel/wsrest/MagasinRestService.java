@@ -1,9 +1,12 @@
 package com.infotel.wsrest;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.jws.WebMethod;
+import javax.jws.PathParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -31,6 +34,102 @@ public class MagasinRestService {
 		this.dao = dao;
 	}
 	
+	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Ajouter +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	@GET
+	@Path("ajouterMagasin/{idMagasin}/{nomMagasin}/{codeMagasin}/{prixDuLocal}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public void ajouterMagasin(
+			@PathParam(value="idMagasin")long idMagasin,
+			@PathParam(value="nomMagasin")String nomMagasin,
+			@PathParam(value="codeMagasin")int codeMagasin,
+			@PathParam(value="prixDuLocal")double prixDuLocal) {
+	
+	Magasin m = new Magasin();
+	m.setNomMagasin(nomMagasin);
+	m.setCodeMagasin(codeMagasin);
+	m.setPrixDuLocal(prixDuLocal);
+	
+		dao.addMagasin(m);
+	}
+	
+	@GET
+	@Path("ajouterProduitNonPerissable/{idProduit}/{nomProduit}/{stock}/{prix}/{modeDemploi}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public void ajouterProduitNonPerissable(
+			@PathParam(value="idProduit")long idProduit,
+			@PathParam(value="nomProduit")String nomProduit,
+			@PathParam(value="stock")int stock,
+			@PathParam(value="prix")double prix,
+			@PathParam(value="modeDemploi")String modeDemploi) {
+	
+	ProduitNonPerissable p = new ProduitNonPerissable();
+	p.setNomProduit(nomProduit);
+	p.setStock(stock);
+	p.setPrix(prix);
+	p.setModeDemploi(modeDemploi);
+	
+	dao.ajouterProduitNonPerissable(p);
+	}
+	
+	@GET
+	@Path("ajouterProduitNonPerissable/{idProduit}/{nomProduit}/{stock}/{prix}/{dateLimiteUtilisation}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public void ajouterProduitPerissable(
+			@PathParam(value="idProduit")long idProduit,
+			@PathParam(value="nomProduit")String nomProduit,
+			@PathParam(value="stock")int stock,
+			@PathParam(value="prix")double prix,
+			@PathParam(value="dateLimiteUtilisation")Date dateLimiteUtilisation) {
+	
+	ProduitPerissable p = new ProduitPerissable();
+	p.setNomProduit(nomProduit);
+	p.setStock(stock);
+	p.setPrix(prix);
+	p.setDateLimiteUtilisation(dateLimiteUtilisation);
+	
+	dao.ajouterProduitPerissable(p);
+	}
+	
+	@GET
+	@Path("ajouterProduitNonPerissable/{idProduit}/{nomProduit}/{stock}/{prix}/{dateLimiteUtilisation}/{idMagasin}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public void ajouterPPMagasin(
+			@PathParam(value="idProduit")long idProduit,
+			@PathParam(value="nomProduit")String nomProduit,
+			@PathParam(value="stock")int stock,
+			@PathParam(value="prix")double prix,
+			@PathParam(value="dateLimiteUtilisation")Date dateLimiteUtilisation,
+			@PathParam(value="idMagasin")long idMagasin) {
+		
+		ProduitPerissable p = new ProduitPerissable();
+		p.setNomProduit(nomProduit);
+		p.setStock(stock);
+		p.setPrix(prix);
+		p.setDateLimiteUtilisation(dateLimiteUtilisation);
+		
+		dao.ajouterProduit(p, idMagasin);
+		
+	}
+	
+	@GET
+	@Path("supprProduitPeri/{idProduit}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public void ajouterPNPMagasin(
+			@PathParam(value="idProduit")long idProduit,
+			@PathParam(value="nomProduit")String nomProduit,
+			@PathParam(value="stock")int stock,
+			@PathParam(value="prix")double prix,
+			@PathParam(value="modeDemploi")String modeDemploi,
+			@PathParam(value="idMagasin")long idMagasin) {
+		
+		ProduitNonPerissable p = new ProduitNonPerissable();
+		p.setNomProduit(nomProduit);
+		p.setStock(stock);
+		p.setPrix(prix);
+		p.setModeDemploi(modeDemploi);
+		
+		dao.ajouterProduit(p, idMagasin);
+			}
 	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Supprimer +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	@GET
 	@Path("supprProduitPeri/{idProduit}")
