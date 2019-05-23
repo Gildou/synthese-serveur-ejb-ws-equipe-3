@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,7 +27,7 @@ public class Magasin implements Serializable{
 	private String nomMagasin;
 	private int codeMagasin;
 	private double prixDuLocal;
-	@OneToMany(mappedBy = "magasin")
+	@OneToMany(mappedBy = "Magasin", cascade = CascadeType.REMOVE)
 	private List<Produit> produits = new ArrayList<Produit>();
 	
 	public long getIdMagasin() {
