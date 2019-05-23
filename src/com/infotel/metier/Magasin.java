@@ -27,7 +27,7 @@ public class Magasin implements Serializable{
 	private String nomMagasin;
 	private int codeMagasin;
 	private double prixDuLocal;
-	@OneToMany(mappedBy = "Magasin", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "magasin", cascade = CascadeType.REMOVE)
 	private List<Produit> produits = new ArrayList<Produit>();
 	
 	public long getIdMagasin() {

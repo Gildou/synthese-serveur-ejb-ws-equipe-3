@@ -33,8 +33,8 @@ public interface IdaoRemote {
 	public List<Magasin> getAllMagasin();
 	public List<Produit> getAllProduit();
 	public List<ProduitNonPerissable> getAllProduitNonPerissable();
-	public List<ProduitPerissable> getAllProduitPerissable();
-	
+	public List<ProduitPerissable> getAllProduitPerissable();	
 	public List<Produit> getProduitParMagasin(long idMagasin);
+	
 	public double calculPrixMagasin(Magasin m);
 }
